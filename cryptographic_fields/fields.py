@@ -61,7 +61,7 @@ class EncryptedMixin(object):
         if value is None:
             return value
 
-        if isinstance(value, (bytes, six.string_types[0])):
+        if isinstance(value, (bytes, str)):
             if isinstance(value, bytes):
                 value = value.decode('utf-8')
             try:
