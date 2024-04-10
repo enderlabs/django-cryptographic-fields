@@ -129,18 +129,11 @@ class EncryptedBooleanField(EncryptedMixin, django.db.models.BooleanField):
         return encrypt_str(force_str(value)).decode('utf-8')
 
 
-class EncryptedNullBooleanField(EncryptedMixin, django.db.models.NullBooleanField):
+class EncryptedNullBooleanField(EncryptedBooleanField):
 
-    def get_db_prep_save(self, value, connection):
-        if value is None:
-            return value
-        if value is True:
-            value = '1'
-        elif value is False:
-            value = '0'
-        # decode the encrypted value to a unicode string, else this breaks in pgsql
-        return encrypt_str(force_str(value)).decode('utf-8')
-
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('null', True)
+        super().__init__(*args, **kwargs)
 
 class EncryptedNumberMixin(EncryptedMixin):
     max_length = 20
