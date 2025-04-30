@@ -1,4 +1,4 @@
-setuptools
+setuptools==70.0.0
 coverage
 cryptography
 Django>=1.9.4
