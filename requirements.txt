@@ -1,7 +1,7 @@
 setuptools==70.0.0
 coverage
 cryptography
-Django>=1.9.4
+Django>=4.2.14
 django_coverage
 flake8
 ipython
