@@ -6,14 +6,13 @@ USE_TZ = True
 ROOT_URLCONF = 'testapp.urls'
 SECRET_KEY = 'abc'
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.admin',
-    'django_coverage',
     'cryptographic_fields',
     'testapp',
-)
+]
 
 FIELD_ENCRYPTION_KEY = '6-QgONW6TUl5rt4Xq8u-wBwPcb15sIYS2CN6d69zueM='
 
@@ -33,7 +32,9 @@ DATABASES = {
 #     }
 # }
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-)
+]
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
