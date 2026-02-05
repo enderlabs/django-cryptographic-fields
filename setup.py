@@ -17,7 +17,7 @@ with open('cryptographic_fields/__init__.py', 'r') as init_file:
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
-    name='django-cryptographic-fields',
+    name='cryptographic-fields',
     version=version,
     packages=find_packages(),
     license='MIT',
@@ -30,10 +30,10 @@ setup(
     download_url='https://github.com/foundertherapy/django-cryptographic-fields/archive/' + version + '.tar.gz',
     author='Dana Spiegel',
     author_email='nasief304@gmail.com',
+    python_requires='>=3.10',
     install_requires=[
-        'Django>=1.7',
-        'cryptography>=0.8.2',
-        'six>=1.12.0',
+        'Django>=5.2',
+        'cryptography>=42.0.0',
     ],
     keywords=['encryption', 'django', 'fields', ],
 )

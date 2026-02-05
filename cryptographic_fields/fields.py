@@ -1,7 +1,3 @@
-from __future__ import unicode_literals
-
-import sys
-
 import django.db
 import django.db.models
 from django.utils.encoding import force_str
@@ -11,7 +7,6 @@ from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 
 import cryptography.fernet
-import six
 
 
 def get_crypter():
@@ -28,8 +23,9 @@ def get_crypter():
             # else turn the single key into a list of one
             keys = [cryptography.fernet.Fernet(force_str(configured_keys)), ]
     except Exception as e:
-        six.reraise(ImproperlyConfigured(
-            'FIELD_ENCRYPTION_KEY defined incorrectly: {}'.format(force_str(e))), None, sys.exc_info()[2])
+        raise ImproperlyConfigured(
+            'FIELD_ENCRYPTION_KEY defined incorrectly: {}'.format(force_str(e))
+        ) from e
 
     if len(keys) == 0:
         raise ImproperlyConfigured('No keys defined in setting FIELD_ENCRYPTION_KEY')
@@ -71,7 +67,7 @@ class EncryptedMixin(object):
 
         return super(EncryptedMixin, self).to_python(value)
 
-    def from_db_value(self, value, expression=None, connection=None, context=None):
+    def from_db_value(self, value, expression, connection):
         return self.to_python(value)
 
     def get_db_prep_save(self, value, connection):

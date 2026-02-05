@@ -1,7 +1,5 @@
-from __future__ import unicode_literals
-
 import datetime
-import mock
+from unittest import mock
 
 from django.forms import ModelForm
 from django.test import TestCase
